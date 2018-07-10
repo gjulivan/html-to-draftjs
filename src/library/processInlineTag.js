@@ -2,8 +2,11 @@ const inlineTags = {
   code: 'CODE',
   del: 'STRIKETHROUGH',
   em: 'ITALIC',
+  i: 'ITALIC',
   strong: 'BOLD',
+  b: 'BOLD',
   ins: 'UNDERLINE',
+  u: 'UNDERLINE',
   sub: 'SUBSCRIPT',
   sup: 'SUPERSCRIPT',
 };
