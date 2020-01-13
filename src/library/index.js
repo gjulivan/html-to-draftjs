@@ -19,6 +19,15 @@ import getEntityId from './getEntityId';
 
 const SPACE = ' ';
 const REGEX_NBSP = new RegExp('&nbsp;', 'g');
+const IS_SCRIPT_OR_DATA = new RegExp(/^(?:\w+script|data):/i)
+
+const sanitizeScriptOrData = (src) => {
+  if(IS_SCRIPT_OR_DATA.test(src)){
+    return "";
+  }else{
+    return src;
+  }
+} 
 
 let firstBlock = true;
 
@@ -100,6 +109,7 @@ function genFragment(
   ) {
     const entityConfig = {};
     entityConfig.src = node.getAttribute ? node.getAttribute('src') || node.src : node.src;
+    entityConfig.src = sanitizeScriptOrData(entityConfig.src);
     entityConfig.height = node.height;
     entityConfig.width = node.width;
     const entityId = Entity.__create(
